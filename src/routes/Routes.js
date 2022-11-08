@@ -9,6 +9,7 @@ import Orders from '../pages/Orders/Orders';
 import Register from '../pages/Register/Register';
 import Reviews from '../pages/Reviews/Reviews';
 import Services from '../pages/Services/Services';
+import PrivateRotes from './PrivateRotes';
 
 const router = createBrowserRouter([
     {
@@ -29,11 +30,11 @@ const router = createBrowserRouter([
     },
     {
         path : '/orders',
-        element : <Orders></Orders>
+        element : <PrivateRotes><Orders></Orders></PrivateRotes>
     },
     {
         path : '/reviews',
-        element : <Reviews></Reviews>
+        element : <PrivateRotes><Reviews></Reviews></PrivateRotes>
     },
     {
         path : '/blog',
@@ -41,11 +42,11 @@ const router = createBrowserRouter([
     },
     {
         path : '/add-service',
-        element : <AddService></AddService>
+        element : <PrivateRotes><AddService></AddService></PrivateRotes>
     },
     {
         path : '/checkout',
-        element : <Checkout></Checkout>
+        element : <PrivateRotes><Checkout></Checkout></PrivateRotes>
     },
     {
         path : '*',
