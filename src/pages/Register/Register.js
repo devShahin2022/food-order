@@ -1,10 +1,52 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { AuthContextInfo } from '../../cotext/Authcontext';
 
 const Register = () => {
+
+    const {createUser} = useContext(AuthContextInfo);
+    const emailSignInHandle = (e) => {
+        e.preventDefault();
+
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        if(email !== '' && password !== ''){
+            createUser(email,password)
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        }else{
+            alert("please fill the form correctly");
+        }
+    }
     return (
-        <div>
-            <h1>Iam register page</h1>
-        </div>
+        <>
+          <Form onSubmit={emailSignInHandle}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control name='email' type="email" placeholder="Enter email" required />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control name='password' type="password" placeholder="Password" required />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check type="checkbox" label="Check me out" />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Create account
+      </Button>
+    </Form>  
+        </>
     );
 };
 

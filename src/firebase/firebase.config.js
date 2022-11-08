@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 //   messagingSenderId: "528154398669",
 //   appId: "1:528154398669:web:b499fb3ae486a8cc693e84"
 // };
+
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_apiKey,
     authDomain: process.env.REACT_APP_authDomain,
