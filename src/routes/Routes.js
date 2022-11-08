@@ -9,6 +9,7 @@ import Orders from '../pages/Orders/Orders';
 import Register from '../pages/Register/Register';
 import Reviews from '../pages/Reviews/Reviews';
 import Services from '../pages/Services/Services';
+import SingleFood from '../pages/SingleFood/SingleFood';
 import PrivateRotes from './PrivateRotes';
 
 const router = createBrowserRouter([
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
     {
         path : '/services',
         element : <Services></Services>
+    },
+    {
+        path : '/services/details/:id',
+        loader : ({params}) => fetch(`http://localhost:5000/each-service?id=${params.id}`),
+        element : <SingleFood></SingleFood>
     },
     {
         path : '/login',
