@@ -2,10 +2,13 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 
 const Login = () => {
     const {signIn, providerLogin} = useContext(AuthContextInfo);
+    const navigate = useNavigate();
+    const from = '/';
     const emailLoginHandle = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -13,7 +16,8 @@ const Login = () => {
         if(email !== '' && password !== ''){
             signIn(email, password)
             .then(result => {
-                console.log(result);
+                // console.log(result);
+                navigate(from,{replace: true});
             })
             .catch(error => {
                 console.log(error);
@@ -27,7 +31,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
         .then(result => {
-            console.log(result);
+            navigate(from,{replace: true});
         })
         .catch(error => {
             console.log(error);

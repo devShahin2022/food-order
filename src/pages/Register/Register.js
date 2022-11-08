@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 
 const Register = () => {
 
     const {createUser} = useContext(AuthContextInfo);
+    const navigate = useNavigate();
+    const from = '/';
+
     const emailSignInHandle = (e) => {
         e.preventDefault();
 
@@ -15,7 +19,7 @@ const Register = () => {
         if(email !== '' && password !== ''){
             createUser(email,password)
             .then(result => {
-                console.log(result);
+                navigate(from,{replace: true});
             })
             .catch(error => {
                 console.log(error);
