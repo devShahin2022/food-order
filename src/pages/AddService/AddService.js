@@ -18,7 +18,7 @@ const AddService = () => {
            alert("Every field ok") ;
            const finalUploadData = {name, perPiech, discount, description, image, discountType};
        
-           fetch('http://localhost:5000/add-service', {
+           fetch('https://assignment11-back-end.vercel.app/add-service', {
             method : "POST",
             headers : {
                 'content-type' : 'application/json'

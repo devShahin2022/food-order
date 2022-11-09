@@ -19,7 +19,7 @@ const Reviews = () => {
     const handleClose = () => setShow(false);
 
     useEffect(() => {
-        const url = `http://localhost:5000/reviews-by-email`;
+        const url = `https://assignment11-back-end.vercel.app/reviews-by-email`;
 
         fetch(url,{
             method : 'POST',
@@ -45,7 +45,7 @@ const Reviews = () => {
     const deleteReview = (id) => {
         console.log(id);
         const reviewId = id;
-        fetch('http://localhost:5000/delete-review',{
+        fetch('https://assignment11-back-end.vercel.app/delete-review',{
             method : 'DELETE',
             headers : {
                 'content-type' : 'application/json',
@@ -79,7 +79,7 @@ const Reviews = () => {
         const updatedText = text;
 
         if(updatedRatting !== '' && updatedText !== ''){
-            fetch('http://localhost:5000/update-review', {
+            fetch('https://assignment11-back-end.vercel.app/update-review', {
                 method : 'PUT',
                 headers : {
                     'content-type' : 'application/json',

@@ -17,7 +17,7 @@ const Login = () => {
             signIn(email, password)
             .then(result => {
               const email = result.user.email;
-              fetch('http://localhost:5000/jwt', {
+              fetch('https://assignment11-back-end.vercel.app/jwt', {
                 method : "POST",
                 headers : {
                   'content-type' : 'application/json'
@@ -46,7 +46,7 @@ const Login = () => {
         .then(result => {
             console.log('user email', result.user.email);
             const email = result.user.email;
-            fetch('http://localhost:5000/jwt', {
+            fetch('https://assignment11-back-end.vercel.app/jwt', {
               method : "POST",
               headers : {
                 'content-type' : 'application/json'

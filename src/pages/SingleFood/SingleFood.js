@@ -38,7 +38,7 @@ const SingleFood = () => {
 
             const finalReview = {time, ratings, revText, userEmail, foodId, userPhoto,date};
             if(parseFloat(ratings) <= 5 && parseFloat(ratings) > 0 ){
-                fetch('http://localhost:5000/add-review',{
+                fetch('https://assignment11-back-end.vercel.app/add-review',{
                     method : "POST",
                     headers : {
                         'content-type' : 'application/json'

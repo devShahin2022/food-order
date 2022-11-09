@@ -8,7 +8,7 @@ const Services = () => {
      const [loading, setLoading] = useState(true);
  
      useEffect(() => {
-         fetch('http://localhost:5000/services')
+         fetch('https://assignment11-back-end.vercel.app/services')
          .then(res => res.json())
          .then(data => {
              setFoods(data);

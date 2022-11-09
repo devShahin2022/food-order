@@ -9,7 +9,7 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services-3')
+        fetch('https://assignment11-back-end.vercel.app/services-3')
         .then(res => res.json())
         .then(data => {
             setFoods(data);

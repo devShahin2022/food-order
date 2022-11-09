@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     },
     {
         path : '/services/details/:id',
-        loader : ({params}) => fetch(`http://localhost:5000/each-service?id=${params.id}`),
+        loader : ({params}) => fetch(`https://assignment11-back-end.vercel.app/each-service?id=${params.id}`),
         element : <SingleFood></SingleFood>
     },
     {

@@ -20,7 +20,7 @@ const Register = () => {
             createUser(email,password)
             .then(result => {
               const email = result.user.email;
-              fetch('http://localhost:5000/jwt', {
+              fetch('https://assignment11-back-end.vercel.app/jwt', {
                 method : "POST",
                 headers : {
                   'content-type' : 'application/json'
