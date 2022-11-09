@@ -19,9 +19,17 @@ const Reviews = () => {
     const handleClose = () => setShow(false);
 
     useEffect(() => {
-        const url = `http://localhost:5000/reviews-by-email?email=${email}`;
+        const url = `http://localhost:5000/reviews-by-email`;
 
-        fetch(url)
+        fetch(url,{
+            method : 'POST',
+            headers : {
+                'content-type' : 'application/json',
+                accesstoken : `Bearer ${localStorage.getItem('jwt')}`
+            },
+            body : JSON.stringify({email})
+
+        })
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -40,9 +48,10 @@ const Reviews = () => {
         fetch('http://localhost:5000/delete-review',{
             method : 'DELETE',
             headers : {
-                'content-type' : 'application/json'
+                'content-type' : 'application/json',
+                accesstoken : `Bearer ${localStorage.getItem('jwt')}`
             },
-            body : JSON.stringify({reviewId})
+            body : JSON.stringify({reviewId, email})
         })
         .then(res => res.json())
         .then(data => {
@@ -73,9 +82,10 @@ const Reviews = () => {
             fetch('http://localhost:5000/update-review', {
                 method : 'PUT',
                 headers : {
-                    'content-type' : 'application/json'
+                    'content-type' : 'application/json',
+                    accesstoken : `Bearer ${localStorage.getItem('jwt')}`
                 },
-                body : JSON.stringify({updatedRatting, updatedText, id})
+                body : JSON.stringify({updatedRatting, updatedText, id, email})
             })
             .then(res => res.json())
             .then(data => {
