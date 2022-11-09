@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { json, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 
@@ -16,7 +16,7 @@ const SingleFood = () => {
     // average review setup
     if(reviewLen > 0){
         data.reviews.forEach(r => {
-            sumofReview += parseFloat(r.review.ratings);
+            sumofReview += parseFloat(r.ratings);
         })
         avgReview = (sumofReview / reviewLen).toFixed(1);
     }
@@ -35,15 +35,28 @@ const SingleFood = () => {
             const userEmail = user.email;
             const userPhoto = user.photoURL;
             const foodId = data.result[0]._id;
+
+            const finalReview = {time, ratings, revText, userEmail, foodId, userPhoto,date};
             if(parseFloat(ratings) <= 5 && parseFloat(ratings) > 0 ){
-                fetch('')
+                fetch('http://localhost:5000/add-review',{
+                    method : "POST",
+                    headers : {
+                        'content-type' : 'application/json'
+                    },
+                    body : JSON.stringify({finalReview})
+                })
                 .then(res => res.json())
-                .then(data => console.log(data))
+                .then(data =>{
+                    console.log(data);
+                    if(data.acknowledged && data.insertedId !== ''){
+                        alert('review add success');
+                    }
+                })
                 .catch(error => console.log(error));
             }else{
                 alert("please give valid ratings");
             }
-            console.log({time, ratings, revText, userEmail, foodId, userPhoto});
+            // console.log({time, ratings, revText, userEmail, foodId, userPhoto});
         }else{
             alert("Login required for add review");
         }
@@ -140,12 +153,13 @@ const ReviewShow = ({rev}) => {
                             <div style={{"width":"3.5rem","height":"3.5rem"}} className='rounded-circle text-white bg-primary p-1 d-flex justify-content-center align-items-center' >{rev.userEmail.slice(0,1).toUpperCase()}</div>
                         </>
                     }
-                    <br/><small>{rev.userEmail}</small>
+                    <br/>
+                    <div  style={{"overflow":"auto"}}><small>{rev.userEmail}</small></div>
                 </div>
                 <div className='col-9 p-2'>
-                    <p>rattings : {parseFloat(rev.review.ratings).toFixed(1)}</p>
-                    <p className="lead">{rev.review.message}</p>
-                    <i className='text-muted'>22/12/2020</i>
+                    <p>rattings : {parseFloat(rev.ratings).toFixed(1)}</p>
+                    <p className="lead">{rev.revText}</p>
+                    <i className='text-muted'>{rev.date}</i>
                 </div>
             </div>
     )
