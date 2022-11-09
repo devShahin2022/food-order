@@ -102,7 +102,7 @@ const SingleFood = () => {
                         <form onSubmit={addReview} className='px-2 py-4 bg-light sticky-top' action="">
                             <input step="0.01" name='ratings' placeholder='keep ratings upto five' type="number" max="5" min="1" className='form-control my-2' />
                             <div className='d-flex justify-content-between'>
-                                <textarea name='reviewText' className='form-control w-100 me-2' id=""  rows="1"></textarea>
+                                <textarea placeholder='Type your mind...' name='reviewText' className='form-control w-100 me-2' id=""  rows="1"></textarea>
                                 <button type='submit' className='btn btn-dark text-white'>Add reviews</button>
                             </div>
                         </form>

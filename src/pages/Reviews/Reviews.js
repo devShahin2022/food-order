@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 
 const Reviews = () => {
-    const [review, setReview] = useState();
+    const [review, setReview] = useState([]);
     const [loading, setLoading] = useState(true);
     const {user} = useContext(AuthContextInfo);
     const email = user.email;
+    console.log(review);
 
     useEffect(() => {
         const url = `http://localhost:5000/reviews-by-email?email=${email}`;
@@ -23,6 +25,29 @@ const Reviews = () => {
 
     console.log(review);
 
+
+    const deleteReview = (id) => {
+        console.log(id);
+        const reviewId = id;
+        fetch('http://localhost:5000/delete-review',{
+            method : 'DELETE',
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body : JSON.stringify({reviewId})
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.acknowledged && data.deletedCount > 0){
+                alert('delete data success');
+            }else{
+                alert('internal error');
+            }
+        })
+        .catch(error => console.log(error));
+    }
+
     return (
         <div>
             <Menubar></Menubar>
@@ -36,14 +61,24 @@ const Reviews = () => {
                     :
                     <>
                         {
-                            review.map(r => {
-                                return (
-                                    <ReviewLoadByEmail
-                                    key={r._id}
-                                    eachReview = {r}
-                                    ></ReviewLoadByEmail>
-                                )
-                            })
+                            review.length < 1 ?
+                            <>
+                                <h3 className='text-center my-4 px-2'>No Review found</h3>
+                            </>
+                            :
+                            <>
+                                {
+                                review.map(r => {
+                                    return (
+                                        <ReviewLoadByEmail
+                                        key={r._id}
+                                        eachReview = {r}
+                                        deleteReview ={deleteReview}
+                                        ></ReviewLoadByEmail>
+                                    )
+                                    })
+                                }
+                            </>
                         }
                     </>
                 }
@@ -54,7 +89,7 @@ const Reviews = () => {
 };
 
 // all reviews load
-const ReviewLoadByEmail = ({eachReview}) => {
+const ReviewLoadByEmail = ({eachReview , deleteReview}) => {
 
     console.log(eachReview);
     return (
@@ -72,8 +107,9 @@ const ReviewLoadByEmail = ({eachReview}) => {
                         </div>
                     </div>
                     <div className='d-flex align-items-center'>
+                        <Link to={`/services/details/${eachReview.foodId}`}><button className='btn btn-sm btn-light text-primary me-3'>Visit service</button></Link>
                         <button className='btn btn-primary btn-sm me-3'>Edit</button>
-                        <button className='btn btn-danger btn-sm me-3'>Delete</button>
+                        <button onClick={() => deleteReview(eachReview._id)} className='btn btn-danger btn-sm me-3'>Delete</button>
                     </div>
             </div>
     )
