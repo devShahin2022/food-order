@@ -12,6 +12,7 @@ const Menubar = () => {
   const logoutHandle = () => {
     logOut()
     .then(result => {
+      localStorage.removeItem('jwt');
       console.log(result);
     })
     .catch(error => {
@@ -29,7 +30,6 @@ const Menubar = () => {
               {
                 user && user.uid ? <>
                 <Link to='/add-service' className='nav-link'>Add Service</Link>
-                <Link to='/orders' className='nav-link'>Orders</Link>
                 <Link to='/reviews' className='nav-link'>Reviews</Link>
                 <p className='lead ms-3'>{user?.email || ''}</p>
                 <button onClick={logoutHandle} className='btn btn-sm rounded'>Logout</button> 

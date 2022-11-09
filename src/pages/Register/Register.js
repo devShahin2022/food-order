@@ -19,7 +19,21 @@ const Register = () => {
         if(email !== '' && password !== ''){
             createUser(email,password)
             .then(result => {
-                navigate(from,{replace: true});
+              const email = result.user.email;
+              fetch('http://localhost:5000/jwt', {
+                method : "POST",
+                headers : {
+                  'content-type' : 'application/json'
+                },
+                body : JSON.stringify({email})
+                })
+                .then(res => res.json())
+                .then(data => {
+                  console.log(data)
+                  localStorage.setItem('jwt', data.token);
+                })
+                .catch(error => console.log(error));
+              navigate(from,{replace: true});
             })
             .catch(error => {
                 console.log(error);

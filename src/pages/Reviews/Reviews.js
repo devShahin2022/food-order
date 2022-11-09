@@ -13,7 +13,6 @@ const Reviews = () => {
     const [id, setId] = useState();
     const {user} = useContext(AuthContextInfo);
     const email = user.email;
-    console.log(review);
 
     // modals
     const [show, setShow] = useState(false);
@@ -32,7 +31,6 @@ const Reviews = () => {
         .catch(error => console.log(error));
     }, [email]);
 
-    console.log(review);
 
 
     // delete review
@@ -68,7 +66,6 @@ const Reviews = () => {
     }
     // Update data
     const upadteData = () => {
-        console.log(ratting, text, id);
         const updatedRatting = parseFloat(ratting).toFixed(1);
         const updatedText = text;
 

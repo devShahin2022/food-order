@@ -35,10 +35,6 @@ const router = createBrowserRouter([
         element : <Register></Register>
     },
     {
-        path : '/orders',
-        element : <PrivateRotes><Orders></Orders></PrivateRotes>
-    },
-    {
         path : '/reviews',
         element : <PrivateRotes><Reviews></Reviews></PrivateRotes>
     },
