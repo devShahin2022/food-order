@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
@@ -37,12 +38,13 @@ const Register = () => {
                 .then(data => {
                   console.log(data)
                   localStorage.setItem('jwt', data.token);
+                  toast('Account create success');
                 })
-                .catch(error => console.log(error));
+                .catch(error => toast('error occure'));
               navigate(from,{replace: true});
             })
             .catch(error => {
-                console.log(error);
+                toast('error occure');
             })
         }else{
             alert("please fill the form correctly");
