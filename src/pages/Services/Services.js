@@ -4,6 +4,7 @@ import Menubar from '../../components/Navbar/Menubar';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Footer from '../../components/Footer/Footer';
 import useTitle from '../../Hooks/useTitle';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Services = () => {
      // state
@@ -36,7 +37,9 @@ const Services = () => {
                     {
                         loading ? 
                         <>
-                         <p>Please wait data loading...</p>
+                        <div style={{"height" : "100vh"}} className='w-100 d-flex justify-content-center mt-5'>
+                            Loading... <Spinner animation="border" variant="dark" />
+                        </div>
                         </>
                         :
                         <>

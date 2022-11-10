@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Footer from '../../components/Footer/Footer';
 import useTitle from '../../Hooks/useTitle';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Reviews = () => {
     const [review, setReview] = useState([]);
@@ -119,7 +120,9 @@ const Reviews = () => {
                 {
                     loading ? 
                     <>
-                        <h2>Please wait data loading</h2>
+                        <div style={{"height" : "100vh"}} className='w-100 d-flex justify-content-center mt-5'>
+                            Loading... <Spinner animation="border" variant="dark" />
+                        </div>
                     </>
                     :
                     <>
