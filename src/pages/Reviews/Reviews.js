@@ -5,6 +5,7 @@ import { AuthContextInfo } from '../../cotext/Authcontext';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Footer from '../../components/Footer/Footer';
+import useTitle from '../../Hooks/useTitle';
 
 const Reviews = () => {
     const [review, setReview] = useState([]);
@@ -19,6 +20,9 @@ const Reviews = () => {
     // modals
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+
+    // title load
+    useTitle('reviews');
 
     useEffect(() => {
         const url = `https://assignment11-back-end.vercel.app/reviews-by-email`;

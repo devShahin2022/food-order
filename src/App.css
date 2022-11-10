@@ -4,4 +4,15 @@
     #custom-order{
         flex-direction: column-reverse !important;
     }
+    .dNone{
+        display: none !important;
+    }
+    #bannerTitle{
+        padding: 0 10% !important;
+    }
+}
+@media screen and (max-width : 850){
+    .dNone{
+        display: block !important;
+    }
 }

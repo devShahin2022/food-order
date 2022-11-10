@@ -1,8 +1,12 @@
 import React from 'react';
 import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
+import useTitle from '../../Hooks/useTitle';
 
 const AddService = () => {
+      // title load
+    useTitle('add service');
+
     const addService = (e) => {
         e.preventDefault();
 
@@ -14,6 +18,7 @@ const AddService = () => {
         const images = form.imageUrls.value;
         const image = images.split(' ');
         const discountType = 'percent';
+        
 
         if(name !== '' && perPiech !== '' && discount !== '' && description !== '' && images !== '' && image !== ''){
            alert("Every field ok") ;

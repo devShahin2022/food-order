@@ -37,10 +37,10 @@ const HomeBanner = () => {
             </Carousel.Item>
             </Carousel>
                 <div style={{"backgroundColor" : "#000000cf","top" : "0","left" : "0"}} className='position-absolute w-100 h-100'>
-                    <h1 className='display-2 text-info text-center py-5 mt-5'>Welcome to my Shop</h1>
-                    <p className="lead text-center px-4 text-light">I will provide healthy foods. Its look amazing and I will bring your order within 30 miniutes.</p>
+                    <h1 id='bannerTitle' className='display-2 text-info text-center py-5 mt-5'>Welcome to my Shop</h1>
+                    <p id='' className="d-none d-lg-block d-xl-block d-xxl-block lead text-center px-4 text-light">I will provide healthy foods. Its look amazing and I will bring your order within 30 miniutes.</p>
                     <div className='d-flex justify-content-center'>
-                        <button className="btn btn-primary text-light my-4 py-3 px-5">Browse all foods</button>
+                        <button id='' className="d-none d-lg-block d-xl-block d-xxl-block btn btn-primary text-light my-4 py-3 px-5">Browse all foods</button>
                     </div>
                 </div>
         </div>

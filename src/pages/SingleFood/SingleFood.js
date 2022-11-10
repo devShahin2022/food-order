@@ -4,6 +4,7 @@ import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Footer from '../../components/Footer/Footer';
+import useTitle from '../../Hooks/useTitle';
 
 const SingleFood = () => {
     let sumofReview = 0 ;
@@ -13,6 +14,9 @@ const SingleFood = () => {
     const reviewLen =data.reviews.length;
 
     const {user} = useContext(AuthContextInfo);
+
+    // title load
+    useTitle('food details');
 
     // average review setup
     if(reviewLen > 0){

@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Footer from '../../components/Footer/Footer';
+import useTitle from '../../Hooks/useTitle';
 
 const Services = () => {
      // state
      const [foods, setFoods] = useState();
      const [loading, setLoading] = useState(true);
+
+    //  load title
+    useTitle('services');
  
      useEffect(() => {
          fetch('https://assignment11-back-end.vercel.app/services')

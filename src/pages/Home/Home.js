@@ -6,12 +6,16 @@ import Footer from '../../components/Footer/Footer';
 import HomeBanner from './Components/HomeBanner/HomeBanner';
 import TopFood from './Components/TopFood/TopFood';
 import CustomOrder from './Components/CustomOrder/CustomOrder';
+import useTitle from '../../Hooks/useTitle';
 
 const Home = () => {
 
     // state
     const [foods, setFoods] = useState();
     const [loading, setLoading] = useState(true);
+
+    // title set
+    useTitle('Home page');
 
     useEffect(() => {
         fetch('https://assignment11-back-end.vercel.app/services-3')

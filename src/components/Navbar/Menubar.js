@@ -28,7 +28,7 @@ const Menubar = () => {
     return (
       <Navbar className='sticky-top py-4 shadow shadow-lg' bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#">Healthy food</Navbar.Brand>
+        <Navbar.Brand href="/">Healthy food</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

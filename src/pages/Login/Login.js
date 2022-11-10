@@ -6,11 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
+import useTitle from '../../Hooks/useTitle';
 
 const Login = () => {
     const {signIn, providerLogin} = useContext(AuthContextInfo);
     const navigate = useNavigate();
     const from = '/';
+
+    // load title
+    useTitle('Login');
+
     const emailLoginHandle = (e) => {
         e.preventDefault();
         const email = e.target.email.value;

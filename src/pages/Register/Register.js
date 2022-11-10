@@ -5,12 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
+import useTitle from '../../Hooks/useTitle';
 
 const Register = () => {
 
     const {createUser} = useContext(AuthContextInfo);
     const navigate = useNavigate();
     const from = '/';
+
+    // title load
+    useTitle('Register');
 
     const emailSignInHandle = (e) => {
         e.preventDefault();

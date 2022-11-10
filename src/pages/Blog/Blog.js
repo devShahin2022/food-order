@@ -1,8 +1,11 @@
 import React from 'react';
 import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
+import useTitle from '../../Hooks/useTitle';
 
 const Blog = () => {
+    // title load
+    useTitle('blog');
     return (
         <>
         <Menubar></Menubar>
