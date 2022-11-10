@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 import { AuthContextInfo } from '../../cotext/Authcontext';
+import logo from '../../logo.svg';
 
 const Menubar = () => {
   const {user, logOut} = useContext(AuthContextInfo);
@@ -26,9 +27,9 @@ const Menubar = () => {
     transform : 'scale(1.04)'
   };
     return (
-      <Navbar className='sticky-top py-4 shadow shadow-lg' bg="light" expand="lg">
+      <Navbar className='sticky-top py-3 shadow shadow-lg' bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/">Healthy food</Navbar.Brand>
+        <Navbar.Brand href="/"><span><img style={{ "width":"16%" }} className='img-fluid me-2' src={logo} alt="" /></span> Healthy food</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
