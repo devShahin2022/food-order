@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Footer from '../../components/Footer/Footer';
+import HomeBanner from './Components/HomeBanner/HomeBanner';
 
 const Home = () => {
 
@@ -25,9 +26,9 @@ const Home = () => {
     return (
         <div>
             <Menubar></Menubar>
-            <div><h1>Section 1 iam banner section delivery system</h1></div>
+            <HomeBanner></HomeBanner>
             <div className='container py-5 bg-white'>
-                <h1 className='text-dark text-center px-2 py-3 mb-4'>our services first three</h1>
+                <h1 className='text-dark text-center px-2 py-3 mb-4'>Check recent Foods I will provide</h1>
                 <div className='row'>
                     {
                         loading ? 
