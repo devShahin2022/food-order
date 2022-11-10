@@ -67,9 +67,7 @@ const Services = () => {
 };
 
 const HomePageService = ({food, idx}) => {
-    console.log(food);
     let foodDesc = '';
-    console.log(food.description.length);
     if(food.description.length > 100){
         foodDesc = food.description.slice(0,100);
     }else{
