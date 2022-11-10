@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
 
 const AddService = () => {
@@ -71,6 +72,9 @@ const AddService = () => {
                 <button type='submit' className='btn btn-danger my-4 mb-5'>Upload service</button>
             </form>
            </div>
+
+           {/* footer */}
+           <Footer></Footer>
         </div>
     );
 };

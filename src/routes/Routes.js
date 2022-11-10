@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter} from "react-router-dom";
+import Page404 from '../components/Page404/Page404';
 import AddService from '../pages/AddService/AddService';
 import Blog from '../pages/Blog/Blog';
 import Checkout from '../pages/Checkout/Checkout';
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
     },
     {
         path : '*',
-        element : <h1>404 page not found!!!</h1>
+        element : <Page404></Page404>
     }
 ])
 

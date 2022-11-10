@@ -4,6 +4,7 @@ import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Footer from '../../components/Footer/Footer';
 
 const Reviews = () => {
     const [review, setReview] = useState([]);
@@ -174,6 +175,10 @@ const Reviews = () => {
         </Modal.Footer>
       </Modal>
     </>
+
+
+    {/* footer */}
+    <Footer></Footer>
         </div>
     );
 };

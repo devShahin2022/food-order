@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import Footer from '../../components/Footer/Footer';
 
 const SingleFood = () => {
     let sumofReview = 0 ;
@@ -135,6 +136,10 @@ const SingleFood = () => {
                     </div>
                 </div>
             </div>
+
+
+            {/* footer */}
+            <Footer></Footer>
         </div>
     );
 };
