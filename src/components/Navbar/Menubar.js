@@ -67,13 +67,13 @@ const Menubar = () => {
 
           <Form className="d-flex">
             {
-              user.photoURL !== '' ?
+              user.photoURL?.length > 1 ?
               <>
                   <img title={user.email} style={{"width":"2rem","height":"2rem"}} className='rounded-circle me-3 border border-1 border-muted' src={user.photoURL} alt="" />
               </>
               :
               <>
-                  <div style={{"width":"2rem","height":"2rem"}} className='rounded-circle text-white bg-primary p-1  border border-1 border-muted d-flex justify-content-center align-items-center me-3' >{user.email.slice(0,1).toUpperCase()}</div>
+                  <div  title={user.email} style={{"width":"2rem","height":"2rem"}} className='rounded-circle text-white bg-primary p-1  border border-1 border-muted d-flex justify-content-center align-items-center me-3' >{user.email.slice(0,1).toUpperCase()}</div>
               </>
             }
             <Button onClick={logoutHandle} className='btn btn-danger btn-sm'>Logout</Button>

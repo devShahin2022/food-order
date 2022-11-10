@@ -171,7 +171,7 @@ const ReviewShow = ({rev}) => {
             <div className='row border border-1 p-1 my-3'>
                 <div className='col-3 p-2'>
                     {
-                        rev.userPhoto !== '' ?
+                        rev.userPhoto?.length > 1 ?
                         <>
                             <img style={{"width":"3.5rem","height":"3.5rem"}} className='rounded-circle' src={rev.userPhoto} alt="" />
                         </>
