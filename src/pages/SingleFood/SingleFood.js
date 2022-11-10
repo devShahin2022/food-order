@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const SingleFood = () => {
     let sumofReview = 0 ;
@@ -66,18 +67,24 @@ const SingleFood = () => {
             <div className='container'>
                 <div className='row'>
                     <div className='col-md-6'>
-                        <img className='w-100 img-fluid' src={currentImg} alt="" />
+                    <PhotoProvider>
+                        <PhotoView src={currentImg}>
+                            <img className='w-100 img-fluid' src={currentImg} alt="" />
+                        </PhotoView>
+                    </PhotoProvider>
                         <div className='row my-2'>
                             {
                                 data.result[0].image.map((img, idx) => {
                                     return (
-                                        <BottomImg
-                                        key={idx}
-                                        img={img}
-                                        ></BottomImg>
+                                            <BottomImg
+                                            key={idx}
+                                            img={img}
+                                            idx = {idx}
+                                            ></BottomImg>
                                     )
                                 })
                             }
+                            
                         </div>
                     </div>
                     <div className='col-md-6'>
@@ -132,10 +139,14 @@ const SingleFood = () => {
     );
 };
 
-const BottomImg = ({img}) => {
+const BottomImg = ({img, idx}) => {
     return (
         <div className="col-2 m-1 border-1">
-            <img className='img-fluid w-100' src={img} alt="" />
+             <PhotoProvider>
+                <PhotoView key={idx} src={img}>
+                    <img className='img-fluid w-100' src={img} alt="" />
+                </PhotoView> 
+             </PhotoProvider>
         </div>
     )
 }

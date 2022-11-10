@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const Home = () => {
 
@@ -35,12 +36,13 @@ const Home = () => {
                         :
                         <>
                             {
-                                foods.map(food => {
+                                foods.map((food, idx) => {
                                     return (
                                         <HomePageService 
                                         
                                         key={food._id}
                                         food = {food}
+                                        idx = {idx}
                                         
                                         ></HomePageService>
                                     );
@@ -59,7 +61,7 @@ const Home = () => {
 };
 
 
-const HomePageService = ({food}) => {
+const HomePageService = ({food, idx}) => {
     console.log(food);
     let foodDesc = '';
     console.log(food.description.length);
@@ -71,7 +73,11 @@ const HomePageService = ({food}) => {
     console.log();
     return(
         <div className="col-md-6 mb-4">
-            <img src={food.image[0]} className='img-fluid w-100' alt="" />
+            <PhotoProvider>
+            <PhotoView key={idx} src={food.image[0]}>
+                    <img src={food.image[0]} className='img-fluid w-100' alt="" />
+                </PhotoView>
+            </PhotoProvider>
             <hr />
             <div className='d-flex flex-wrap justify-content-between my-2 px-2'>
                 <p className='lead'>{food.name}</p>
