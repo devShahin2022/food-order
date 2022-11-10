@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
@@ -8,6 +8,7 @@ import useTitle from '../../Hooks/useTitle';
 import { ToastContainer, toast } from 'react-toastify';
 
 const SingleFood = () => {
+   
     let sumofReview = 0 ;
     let avgReview = 0;
     const data = useLoaderData();
@@ -27,7 +28,7 @@ const SingleFood = () => {
         avgReview = (sumofReview / reviewLen).toFixed(1);
     }
     
-
+    const navigate = useNavigate();
     // add review
     const addReview = (e) => {
         e.preventDefault();
@@ -50,9 +51,12 @@ const SingleFood = () => {
                     body : JSON.stringify({finalReview})
                 })
                 .then(res => res.json())
-                .then(data =>{
-                    if(data.acknowledged && data.insertedId !== ''){
+                .then(data1 =>{
+                    if(data1.acknowledged && data1.insertedId !== ''){
                         toast('Review add success');
+                        e.target.reset();
+                        const foodId = data.result[0]._id ;
+                        navigate(`/services/details/${foodId}`);
                     }
                 })
                 .catch(error => toast('error'));
