@@ -7,7 +7,9 @@ const PrivateRotes = ({children}) => {
     const {user, loading} = useContext(AuthContextInfo);
     const location = useLocation();
     if(loading){
-        return <Spinner animation="border" variant="dark" />
+        return <div style={{"height":"70vh"}} className='d-flex justify-content-center align-item-center w-100'>
+            <Spinner animation="border" variant="dark" />
+        </div>
     }
     if(user && user.uid){
         return children;

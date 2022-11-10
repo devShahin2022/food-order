@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 import Button from 'react-bootstrap/Button';
@@ -28,6 +28,8 @@ const Reviews = () => {
     // title load
     useTitle('reviews');
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const url = `https://assignment11-back-end.vercel.app/reviews-by-email`;
 
@@ -40,7 +42,13 @@ const Reviews = () => {
             body : JSON.stringify({email})
 
         })
-        .then(res => res.json())
+        .then(res => {
+            if(res.status === 401 ){
+                return navigate('/login');
+            }else{
+                return res.json();
+            }
+        })
         .then(data => {
             setReview(data);
             setLen(data.length);
@@ -72,7 +80,13 @@ const Reviews = () => {
                 },
                 body : JSON.stringify({reviewId, email})
             })
-            .then(res => res.json())
+            .then(res => {
+                if(res.status === 401 ){
+                    return navigate('/login');
+                }else{
+                    return res.json();
+                }
+            })
             .then(data => {
                 if(data.acknowledged && data.deletedCount > 0){
                     toast('Delete success');
@@ -107,7 +121,13 @@ const Reviews = () => {
                 },
                 body : JSON.stringify({updatedRatting, updatedText, id, email})
             })
-            .then(res => res.json())
+            .then(res => {
+                if(res.status === 401 ){
+                    return navigate('/login');
+                }else{
+                    return res.json();
+                }
+            })
             .then(data => {
                 if(data.acknowledged && data.modifiedCount > 0){
                     setShow(false);
