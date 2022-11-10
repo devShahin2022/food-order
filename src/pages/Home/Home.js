@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import Footer from '../../components/Footer/Footer';
 
 const Home = () => {
 
@@ -55,7 +56,8 @@ const Home = () => {
             </div>
             <div><h1>Our custom order section</h1></div>
             <div><h1>Blog our 1 food</h1></div>
-            <h1>footer part</h1>
+            {/* Footer */}
+            <Footer></Footer>
         </div>
     );
 };
