@@ -4,6 +4,8 @@ import Menubar from '../../components/Navbar/Menubar';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Footer from '../../components/Footer/Footer';
 import HomeBanner from './Components/HomeBanner/HomeBanner';
+import TopFood from './Components/TopFood/TopFood';
+import CustomOrder from './Components/CustomOrder/CustomOrder';
 
 const Home = () => {
 
@@ -53,10 +55,12 @@ const Home = () => {
                         </>
                     }
                 </div>
-                <div className='text-center'><Link to='services'><button className='btn btn-info me-auto w-25 my-2'>Browse all foods</button></Link></div>
+                <div className='text-center'><Link to='services'><button className='btn btn-outline-info me-auto my-2 mb-4 px-5 py-3'>Browse all foods</button></Link></div>
             </div>
-            <div><h1>Our custom order section</h1></div>
-            <div><h1>Blog our 1 food</h1></div>
+            {/* custom order */}
+            <CustomOrder></CustomOrder>
+            {/* Top sells food */}
+            <TopFood></TopFood>
             {/* Footer */}
             <Footer></Footer>
         </div>

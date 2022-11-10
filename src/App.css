@@ -1,0 +1,7 @@
+/* media query for row reverse */
+
+@media screen and (max-width : 768px){
+    #custom-order{
+        flex-direction: column-reverse !important;
+    }
+}
