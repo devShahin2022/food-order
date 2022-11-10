@@ -18,6 +18,8 @@ const Reviews = () => {
     const [id, setId] = useState();
     const {user} = useContext(AuthContextInfo);
     const email = user.email;
+    const [len, setLen] = useState();
+    const [updater, setUpdater] = useState(20);
      
     // modals
     const [show, setShow] = useState(false);
@@ -41,6 +43,7 @@ const Reviews = () => {
         .then(res => res.json())
         .then(data => {
             setReview(data);
+            setLen(data.length);
             setLoading(false);
             // fetch service name
             fetch(`https://assignment11-back-end.vercel.app/each-service?id=${data[0].foodId}`)
@@ -51,7 +54,7 @@ const Reviews = () => {
             .catch(error => console.log(error));
         })
         .catch(error => console.log(error));
-    }, [email]);
+    }, [email, len, updater]);
 
 
 
@@ -73,6 +76,8 @@ const Reviews = () => {
             .then(data => {
                 if(data.acknowledged && data.deletedCount > 0){
                     toast('Delete success');
+                    // just for rerender
+                    setLen(len-1);    
                 }else{
                     toast('Internal error');
                 }
@@ -106,6 +111,9 @@ const Reviews = () => {
             .then(data => {
                 if(data.acknowledged && data.modifiedCount > 0){
                     setShow(false);
+                    // just for rerender
+                    const date = new Date();
+                    setUpdater(date);
                     toast('Updated success');
                 }else{
                     toast('error occure');
