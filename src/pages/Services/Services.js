@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menubar from '../../components/Navbar/Menubar';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import Footer from '../../components/Footer/Footer';
 
 const Services = () => {
      // state
@@ -52,6 +53,8 @@ const Services = () => {
                     }
                 </div>
             </div>
+            {/* footer */}
+            <Footer></Footer>
         </div>
     );
 };

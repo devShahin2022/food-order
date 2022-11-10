@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer';
+import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 
 const Register = () => {
@@ -44,26 +46,35 @@ const Register = () => {
     }
     return (
         <>
-          <Form onSubmit={emailSignInHandle}>
+        {/* header */}
+        <Menubar></Menubar>
+
+        <h1 className='fs-lg text-info py-5 text-center'>
+          Sign up with email and password
+        </h1>
+        <div className='m-auto my-3 border border-1 rounded px-2 py-4' style={{"max-width" : "500px"}}>
+
+        <Form onSubmit={emailSignInHandle}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control name='email' type="email" placeholder="Enter email" required />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control name='password' type="password" placeholder="Password" required />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" className='w-100 my-3' type="submit">
         Create account
       </Button>
-    </Form>  
+          </Form>  
+
+        </div>
+
+    {/* footer */}
+
+    <Footer></Footer>
+
         </>
     );
 };

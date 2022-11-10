@@ -3,6 +3,8 @@ import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer';
+import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 
 const Login = () => {
@@ -66,31 +68,36 @@ const Login = () => {
         });
     }
 
-    return (<>
+    return (
+  <>
+      <Menubar></Menubar>
+      <div className="container">
+        <h1 className='fs-lg text-info py-5 text-center'>
+          Login
+        </h1>
+        <div className='m-auto my-3 border border-1 rounded px-2 py-4' style={{"max-width" : "500px"}}>
+        <Form onSubmit={emailLoginHandle}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control name='email' type="email" placeholder="Enter email" required />
+        </Form.Group>
 
-    <Form onSubmit={emailLoginHandle}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control name='email' type="email" placeholder="Enter email" required />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control name='password' type="password" placeholder="Password" required />
+        </Form.Group>
+        <Button variant="primary" className='btn btn-primary w-100 my-2' type="submit">
+          Login
+        </Button>
+      </Form>
+      <button onClick={handleGoogleLogin} className='btn btn-light text-primary w-100 py-2 mt-5'>Login with google</button>
+      
+        </div>
+        </div>
+      {/* footer */}
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control name='password' type="password" placeholder="Password" required />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-        <button onClick={handleGoogleLogin} className='btn btn-danger mt-5'>Login with google</button>
-    </>
-        
+      <Footer></Footer>
+      </>  
     );
 };
 
