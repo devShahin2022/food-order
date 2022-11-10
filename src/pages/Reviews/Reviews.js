@@ -9,11 +9,12 @@ const Reviews = () => {
     const [review, setReview] = useState([]);
     const [loading, setLoading] = useState(true);
     const [ratting, setRatting] = useState();
+    const [serviceName, setServiceName] = useState();
     const [text, setText] = useState();
     const [id, setId] = useState();
     const {user} = useContext(AuthContextInfo);
     const email = user.email;
-
+     
     // modals
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -32,9 +33,15 @@ const Reviews = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             setReview(data);
             setLoading(false);
+            // fetch service name
+            fetch(`https://assignment11-back-end.vercel.app/each-service?id=${data[0].foodId}`)
+            .then(res => res.json())
+            .then(d =>{
+                setServiceName(d.result[0].name);
+            })
+            .catch(error => console.log(error));
         })
         .catch(error => console.log(error));
     }, [email]);
@@ -43,7 +50,6 @@ const Reviews = () => {
 
     // delete review
     const deleteReview = (id) => {
-        console.log(id);
         const reviewId = id;
         fetch('https://assignment11-back-end.vercel.app/delete-review',{
             method : 'DELETE',
@@ -55,7 +61,6 @@ const Reviews = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             if(data.acknowledged && data.deletedCount > 0){
                 alert('delete data success');
             }else{
@@ -67,7 +72,6 @@ const Reviews = () => {
 
     // Update review
     const handleShow = (data) => {
-        console.log(data);
         setRatting(data.ratings);
         setText(data.revText);
         setId(data._id);
@@ -89,7 +93,6 @@ const Reviews = () => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if(data.acknowledged && data.modifiedCount > 0){
                     setShow(false);
                 }else{
@@ -130,6 +133,7 @@ const Reviews = () => {
                                         eachReview = {r}
                                         deleteReview ={deleteReview}
                                         handleShow = {handleShow}
+                                        serviceName = {serviceName}
                                         ></ReviewLoadByEmail>
                                     )
                                     })
@@ -175,19 +179,19 @@ const Reviews = () => {
 };
 
 // all reviews load
-const ReviewLoadByEmail = ({eachReview , deleteReview, handleShow}) => {
+const ReviewLoadByEmail = ({eachReview , deleteReview, handleShow, serviceName}) => {
 
     return (
             <div className='alert alert-success px-2 py-2 w-100 my-3 d-flex flex-wrap justify-content-between'>
                     <div>
                         <div className='row'>
-                            <div className="col-6 d-flex flex-wrap">
-                                <p className='lead'>ratings : {eachReview.ratings}</p>
-                                <p className='lead'>Review : {eachReview.revText}</p>
+                            <div className="col-6 d-flex flex-column">
+                                <p className='lead text-primary mx-2'>Food name : { serviceName || '' }</p>
                                 <small>time : {eachReview.date}</small>
                             </div>
                             <div className="col-6">
-
+                                <p className='lead'>ratings : {eachReview.ratings}</p> <br />
+                                <p className='lead'>Text : {eachReview.revText}</p>
                             </div>
                         </div>
                     </div>

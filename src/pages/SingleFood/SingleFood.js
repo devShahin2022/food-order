@@ -7,7 +7,6 @@ const SingleFood = () => {
     let sumofReview = 0 ;
     let avgReview = 0;
     const data = useLoaderData();
-    console.log(data);
     const currentImg = data.result[0].image[0];
     const reviewLen =data.reviews.length;
 
@@ -27,7 +26,6 @@ const SingleFood = () => {
         e.preventDefault();
         if(user && user.uid){
             alert("add your review");
-            console.log(user);
             const date = new Date();
             const time = date.getTime();
             const ratings = e.target.ratings.value;
@@ -47,7 +45,6 @@ const SingleFood = () => {
                 })
                 .then(res => res.json())
                 .then(data =>{
-                    console.log(data);
                     if(data.acknowledged && data.insertedId !== ''){
                         alert('review add success');
                     }
@@ -149,6 +146,11 @@ const ReviewShow = ({rev}) => {
             <div className='row border border-1 p-1 my-3'>
                 <div className='col-3 p-2'>
                     {
+                        rev.userPhoto !== '' ?
+                        <>
+                            <img style={{"width":"3.5rem","height":"3.5rem"}} className='rounded-circle' src={rev.userPhoto} alt="" />
+                        </>
+                        :
                         <>
                             <div style={{"width":"3.5rem","height":"3.5rem"}} className='rounded-circle text-white bg-primary p-1 d-flex justify-content-center align-items-center' >{rev.userEmail.slice(0,1).toUpperCase()}</div>
                         </>
