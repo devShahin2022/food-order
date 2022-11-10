@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 import logo from '../../logo.svg';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Menubar = () => {
   const {user, logOut} = useContext(AuthContextInfo);
@@ -16,6 +17,7 @@ const Menubar = () => {
     logOut()
     .then(result => {
       localStorage.removeItem('jwt');
+      toast('Logout success');
       console.log(result);
     })
     .catch(error => {
@@ -92,6 +94,7 @@ const Menubar = () => {
           }
         </Navbar.Collapse>
       </Container>
+      <ToastContainer />
     </Navbar>
     );
 };

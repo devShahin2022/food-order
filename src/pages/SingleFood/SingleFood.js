@@ -5,6 +5,7 @@ import { AuthContextInfo } from '../../cotext/Authcontext';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Footer from '../../components/Footer/Footer';
 import useTitle from '../../Hooks/useTitle';
+import { ToastContainer, toast } from 'react-toastify';
 
 const SingleFood = () => {
     let sumofReview = 0 ;
@@ -31,7 +32,6 @@ const SingleFood = () => {
     const addReview = (e) => {
         e.preventDefault();
         if(user && user.uid){
-            alert("add your review");
             const date = new Date();
             const time = date.getTime();
             const ratings = e.target.ratings.value;
@@ -52,16 +52,16 @@ const SingleFood = () => {
                 .then(res => res.json())
                 .then(data =>{
                     if(data.acknowledged && data.insertedId !== ''){
-                        alert('review add success');
+                        toast('Review add success');
                     }
                 })
-                .catch(error => console.log(error));
+                .catch(error => toast('error'));
             }else{
                 alert("please give valid ratings");
             }
             // console.log({time, ratings, revText, userEmail, foodId, userPhoto});
         }else{
-            alert("Login required for add review");
+            toast('Login required for add review');
         }
     }
     
@@ -144,6 +144,7 @@ const SingleFood = () => {
 
             {/* footer */}
             <Footer></Footer>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
 import useTitle from '../../Hooks/useTitle';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddService = () => {
       // title load
@@ -34,14 +35,14 @@ const AddService = () => {
            .then(res => res.json())
            .then(data => {
                 if(data.acknowledged && data.insertedId !== ''){
-                    alert('service uploaded success');
                     form.reset();
+                    toast('Service uploaded success');
                 }else{
                     alert('internal error . try again');
                 }
             })
            .catch(error => {
-            console.log(error);
+                toast('error occured!');
            })
 
         }else{
@@ -80,6 +81,7 @@ const AddService = () => {
 
            {/* footer */}
            <Footer></Footer>
+           <ToastContainer></ToastContainer>
         </div>
     );
 };

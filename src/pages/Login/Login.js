@@ -7,6 +7,7 @@ import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
 import { AuthContextInfo } from '../../cotext/Authcontext';
 import useTitle from '../../Hooks/useTitle';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
     const {signIn, providerLogin} = useContext(AuthContextInfo);
@@ -33,14 +34,14 @@ const Login = () => {
                 })
                 .then(res => res.json())
                 .then(data => {
-                  console.log(data)
                   localStorage.setItem('jwt', data.token);
+                  toast('Login success');
                 })
-                .catch(error => console.log(error));
+                .catch(error => toast('error occured!'));
               navigate(from,{replace: true});
             })
             .catch(error => {
-                console.log(error);
+              toast('Login error');
             })
         }else{
             alert("password or username required!");
@@ -51,7 +52,6 @@ const Login = () => {
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
         .then(result => {
-            console.log('user email', result.user.email);
             const email = result.user.email;
             fetch('https://assignment11-back-end.vercel.app/jwt', {
               method : "POST",
@@ -62,14 +62,14 @@ const Login = () => {
             })
             .then(res => res.json())
             .then(data => {
-              console.log(data)
               localStorage.setItem('jwt', data.token);
+              toast('Login success');
             })
-            .catch(error => console.log(error));
+            .catch(error => toast('error occured!'));
             navigate(from,{replace: true});
         })
         .catch(error => {
-            console.log(error);
+            toast('error occured!');
         });
     }
 
@@ -102,6 +102,7 @@ const Login = () => {
       {/* footer */}
 
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
       </>  
     );
 };

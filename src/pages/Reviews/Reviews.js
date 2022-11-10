@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import Footer from '../../components/Footer/Footer';
 import useTitle from '../../Hooks/useTitle';
 import Spinner from 'react-bootstrap/Spinner';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Reviews = () => {
     const [review, setReview] = useState([]);
@@ -56,24 +57,28 @@ const Reviews = () => {
 
     // delete review
     const deleteReview = (id) => {
-        const reviewId = id;
-        fetch('https://assignment11-back-end.vercel.app/delete-review',{
-            method : 'DELETE',
-            headers : {
-                'content-type' : 'application/json',
-                accesstoken : `Bearer ${localStorage.getItem('jwt')}`
-            },
-            body : JSON.stringify({reviewId, email})
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged && data.deletedCount > 0){
-                alert('delete data success');
-            }else{
-                alert('internal error');
-            }
-        })
-        .catch(error => console.log(error));
+        const confirm = window.confirm('Danger ! you cannot recover again');
+        if(confirm){
+
+            const reviewId = id;
+            fetch('https://assignment11-back-end.vercel.app/delete-review',{
+                method : 'DELETE',
+                headers : {
+                    'content-type' : 'application/json',
+                    accesstoken : `Bearer ${localStorage.getItem('jwt')}`
+                },
+                body : JSON.stringify({reviewId, email})
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.acknowledged && data.deletedCount > 0){
+                    toast('Delete success');
+                }else{
+                    toast('Internal error');
+                }
+            })
+            .catch(error => toast('error occure') );
+        }
     }
 
     // Update review
@@ -101,8 +106,9 @@ const Reviews = () => {
             .then(data => {
                 if(data.acknowledged && data.modifiedCount > 0){
                     setShow(false);
+                    toast('Updated success');
                 }else{
-                    alert('interal error! please again try')
+                    toast('error occure');
                 }
             })
             .catch(error => console.log(error));
@@ -156,7 +162,7 @@ const Reviews = () => {
 
             {/* review update modal */}
 
-
+            <ToastContainer></ToastContainer>
             <>
 
       <Modal
