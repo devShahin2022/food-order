@@ -15,7 +15,7 @@ const Gallery = () => {
 
 
     useEffect(()=>{
-        fetch('http://localhost:5000/get-file')
+        fetch('https://assignment11-back-end.vercel.app/get-file')
         .then(result => result.json())
         .then(d => {
             setData(d);
@@ -29,8 +29,8 @@ const Gallery = () => {
         const form = e.target;
         // check all field manually and after send all form data....
         let formData = new FormData(form);
-        formData.append('hostName', 'http://localhost:5000');
-        fetch('http://localhost:5000/upload-file', {
+        formData.append('hostName', 'https://assignment11-back-end.vercel.app/');
+        fetch('https://assignment11-back-end.vercel.app/upload-file', {
           method: 'POST',
           body: formData
         })
@@ -63,7 +63,7 @@ const deletePhotoPermanent = () => {
     if(confirm){
       imagePath.forEach( e => {
         const imgPath = e;
-        fetch('http://localhost:5000/delete-each-file',{
+        fetch('https://assignment11-back-end.vercel.app/delete-each-file',{
             method : 'POST',
             headers : {
                 'content-type' : 'application/json'
