@@ -1,0 +1,8 @@
+.checkBoxAns{
+    transform: scale(3.5);
+}
+@media screen and (max-width : 850px){
+    .checkBoxAns{
+        transform: scale(2.5) !important;
+    } 
+}

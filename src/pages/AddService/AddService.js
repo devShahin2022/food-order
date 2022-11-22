@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Menubar from '../../components/Navbar/Menubar';
 import useTitle from '../../Hooks/useTitle';
 import { ToastContainer, toast } from 'react-toastify';
+import GalleryModal from '../../components/GalleryModal/GalleryModal';
 
 const AddService = () => {
+    const [paths, setPaths] = useState();
+
       // title load
     useTitle('add service');
+    
 
     const addService = (e) => {
         e.preventDefault();
 
         const form = e.target;
-        const name = form.serviceName.value;
+        const name = form.serviceName?.value;
         const perPiech = form.price.value;
         const discount = form.discount.value;
         const description = form.description.value;
@@ -50,6 +54,10 @@ const AddService = () => {
         }
     }
 
+// get photo url from gallery modal
+ const callBackImagePath = (cbPath) => {
+    setPaths(cbPath);
+ }
 
     return (
         <div>
@@ -73,8 +81,9 @@ const AddService = () => {
                 </div>
                 <label className='mt-3 mb-2' htmlFor="">Description</label>
                 <textarea required className='w-100 form-control' name="description" id="" cols="30" rows="10"></textarea>
-                <label className='mt-3 mb-2' htmlFor="">Media (image url)</label>
-                <textarea required placeholder='for multiple image upload you have to one "white space" between two image link' className='w-100 form-control'  name="imageUrls" id="" cols="30" rows="10"></textarea>
+                <label className='mt-3 mb-2' htmlFor="">Media (image url)</label><br/>
+                <GalleryModal callBackImagePath = {callBackImagePath}></GalleryModal>
+                <textarea required defaultValue={paths?.join(" ")} placeholder='for multiple image upload you have to one "white space" between two image link' className='w-100 form-control'  name="imageUrls" id="" cols="30" rows="4"></textarea>
                 <button type='submit' className='btn btn-danger my-4 mb-5'>Upload service</button>
             </form>
            </div>

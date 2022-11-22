@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter} from "react-router-dom";
+import Gallery from '../components/Gallery/Gallery';
 import Page404 from '../components/Page404/Page404';
 import AddService from '../pages/AddService/AddService';
 import Blog from '../pages/Blog/Blog';
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
     {
         path : '*',
         element : <Page404></Page404>
+    },
+    {
+        path : '/gallery',
+        element : <PrivateRotes><Gallery></Gallery></PrivateRotes>
     }
 ])
 

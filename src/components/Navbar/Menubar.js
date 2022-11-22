@@ -29,7 +29,7 @@ const Menubar = () => {
     transform : 'scale(1.04)'
   };
     return (
-      <Navbar className='sticky-top py-3 shadow shadow-lg' bg="light" expand="lg">
+      <Navbar className='py-3 shadow shadow-lg' bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="/"><span><img style={{ "width":"16%" }} className='img-fluid me-2' src={logo} alt="" /></span> Healthy food</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -52,12 +52,18 @@ const Menubar = () => {
             {
               user && user.uid && 
               <>
+
                 <NavLink style={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            } to='/add-service' className='nav-link'>Add Service</NavLink>
-               <NavLink style={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            } to='/reviews' className='nav-link'>My reviews</NavLink>
+                isActive ? activeStyle : undefined
+                } to='/add-service' className='nav-link'>Add Service</NavLink>
+                  <NavLink style={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                } to='/reviews' className='nav-link'>My reviews</NavLink>
+                <NavLink style={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                } to='/gallery' className='nav-link'>Gallery</NavLink>
+
+
               </>
             }
           </Nav>

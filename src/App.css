@@ -1,5 +1,4 @@
 /* media query for row reverse */
-
 @media screen and (max-width : 768px){
     #custom-order{
         flex-direction: column-reverse !important;
@@ -14,5 +13,8 @@
 @media screen and (max-width : 850){
     .dNone{
         display: block !important;
+    }
+    .checkBoxAns{
+        transform: scale(1) !important;
     }
 }
